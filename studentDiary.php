@@ -99,26 +99,6 @@ if($link === false){
 		?>
 	</table>
 	</td>
-	<td>
-	<table border="1" class="diaryContents">
-		<tr class="diaryPoints"><th>Subject</th><th>Task</th><th>Description</th><th>Finished</th></tr>
-		<?php
-			$sql = "SELECT subject, description, task, class, year, username, date, finished FROM homeworkdiary";
-			$result = $link->query($sql);
-
-			if ($result->num_rows > 0) {
-				// output data of each row
-				while($row = $result->fetch_assoc()) {
-					if($row["class"] == $class && $row["year"] == $year && $row["username"] == $username){
-						echo '<tr><td class="homeworkElement">' . $row["subject"] . '</td><td class="homeworkElement">'. $row["task"] . '</td><td class="homeworkElement">'. $row["description"] . '</td><td class="homeworkElement">'. $row["finished"] . ' <a href="finishHomework.php?subject=' . $row["subject"] . '&task=' . $row["task"] . '&description=' . $row["description"] . '&date=' . $row["date"] .'">Finish</a></td></tr>';
-					}
-				}
-			} else {
-				echo "<tr><td></td><td>You dosen't have homework currently. Relax!</td><td></td><td></td></tr>";
-			}
-		?>
-	</table>
-	</td>
 	</tr>
 </table>
 </body>

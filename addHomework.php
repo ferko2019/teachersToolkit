@@ -14,12 +14,24 @@ if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO homeworkdiary (subject, description, task, class, year, finished) VALUES ('$subject', '$description', '$task', '$class', '$year', 'false')";
+$sql = "SELECT username, password, name, status, userDataFileLocation, class, year FROM userinformation";
+$result = $link->query($sql);
 
-if ($link->query($sql) === TRUE) {
-	echo "New record created successfully";
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        if($row["class"] == $class && $row["year"] == $year){
+			$username = $row["username"];
+			$sql = "INSERT INTO homeworkdiary (subject, description, task, class, year, username, finished) VALUES ('$subject', '$description', '$task', '$class', '$year', '$username', 'false')";
+			if ($link->query($sql) === TRUE) {
+				echo $username . "'s homework added!";
+			} else {
+				echo "Error: " . $sql . "<br>" . $link->error;
+			}
+		}
+    }
 } else {
-	echo "Error: " . $sql . "<br>" . $link->error;
+    echo "You're password or username is incorrect!!";
 }
 
 mysqli_close($link);

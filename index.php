@@ -50,7 +50,7 @@ input[type=password] {
 </head>
 <body>
 <h1 class="menuImg">
-<img src="./surces/img/logo.png">
+<img src="./logo.png">
 </h1>
 <form action="logInCode.php" method="POST">
 <class id="logIn" name="logIn">

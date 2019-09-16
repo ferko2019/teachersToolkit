@@ -30,7 +30,7 @@ if($link === false){
 .navBarLi {
   display: inline;
   float: left;
-  width: 14.28%;
+  width: 16.66%;
 }
 
 .navBarButton {
@@ -79,26 +79,6 @@ if($link === false){
 </ul>
 <table class="pageContent">
 	<tr>
-	<td>
-	<table border="1" class="diaryContents">
-		<tr class="diaryPoints"><th>Grade</th><th>Subject</th></tr>
-		<?php
-			$sql = "SELECT username, password, class, year, value, subject FROM studentdiary ORDER BY 'value' ASC";
-			$result = $link->query($sql);
-
-			if ($result->num_rows > 0) {
-				// output data of each row
-				while($row = $result->fetch_assoc()) {
-					if($row["username"] == $username && $row["password"] == $password){
-						echo '<tr><td class="gradeElement">' . $row["value"] . '</td><td class="gradeElement">'. $row["subject"] . '</td></tr>';
-					}
-				}
-			} else {
-				echo "ERROR";
-			}
-		?>
-	</table>
-	</td>
 	<td>
 	<table border="1" class="diaryContents">
 		<tr class="diaryPoints"><th>Subject</th><th>Task</th><th>Description</th><th>Finished</th></tr>
